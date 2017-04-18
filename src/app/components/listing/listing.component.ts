@@ -24,14 +24,19 @@ export class ListingComponent implements OnInit {
       this.id = this.route.snapshot.params['id'];
       this.firebaseService.getListingDetails(this.id).subscribe(listing => {
         this.listing = listing;
-        console.log(listing);
+
+
         let storageRef = firebase.storage().ref();
-        let spaceRef = storageRef.child(listing.path);
-        storageRef.child(listing.path).getDownloadURL().then((url) => {
-          this.imageUrl = url;
-        }).catch((err) => {
-          console.log(err);
+        let spaceRef =  storageRef.child(this.listing.path);
+        storageRef.child(this.listing.path).getDownloadURL().then((url) => {
+          this.listing.cover = url;
+        }).catch((error) => {
+          console.log(error);
         });
+
+
+
+
    });
   }
 

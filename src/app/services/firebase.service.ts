@@ -13,13 +13,13 @@ export class FirebaseService {
     this.folder = 'listingimages';
   }
 
-  getListings(){
+  getListings() {
     this.listings = this.af.database.list('/listings') as FirebaseListObservable<Listing[]>;
     return this.listings;
   }
 
-  getListingDetails(id){
-    this.listing = this.af.database.object('/listings/' + id) as FirebaseObjectObservable<Listing>;
+  getListingDetails(id) {
+    this.listing = this.af.database.object('/listings/' +id) as FirebaseObjectObservable<Listing>;
     return this.listing;
   }
 
